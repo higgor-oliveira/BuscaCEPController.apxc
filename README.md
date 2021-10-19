@@ -1,9 +1,13 @@
 # BuscaCEPController.apxc
 
 public class BuscaCEPController {
+
     /* TRABALHA EM CONJUNTO COM O FRONT */ 
+    
     @AuraEnabled
+    
     public static ViaCepJson consultaCep(String cepDigitado){
+    
         /* 1º METODO QUE FAZ A CONSULTA DO VIACEP */ 
         Http http = new Http();
         HttpRequest request = new HttpRequest();
@@ -13,6 +17,7 @@ public class BuscaCEPController {
         // If the request is successful, parse the JSON response.
          ViaCepJson results = new ViaCepJson();
         system.debug('results: '+results);
+	
         if (response.getStatusCode() == 200) {            
             results = (ViaCepJson) JSON.deserialize(response.getBody(),ViaCepJson.class); /* DESERIALIZE DO JSON CONSEGUE RECEBER PARAMETRO NA FRENTE https://developer.salesforce.com/docs/atlas.en-us.apexref.meta/apexref/apex_class_System_Json.htm#apex_System_Json_deserialize */
             system.debug('results'); /* CONSEGUE CONSULTAR O SERVIÇO */
